@@ -1,0 +1,288 @@
+[
+{
+  "pk": 1, 
+  "model": "auth.permission", 
+  "fields": {
+    "codename": "add_logentry", 
+    "name": "Can add log entry", 
+    "content_type": 1
+  }
+},
+{
+  "pk": 2, 
+  "model": "auth.permission", 
+  "fields": {
+    "codename": "change_logentry", 
+    "name": "Can change log entry", 
+    "content_type": 1
+  }
+},
+{
+  "pk": 3, 
+  "model": "auth.permission", 
+  "fields": {
+    "codename": "delete_logentry", 
+    "name": "Can delete log entry", 
+    "content_type": 1
+  }
+},
+{
+  "pk": 4, 
+  "model": "auth.permission", 
+  "fields": {
+    "codename": "add_permission", 
+    "name": "Can add permission", 
+    "content_type": 2
+  }
+},
+{
+  "pk": 5, 
+  "model": "auth.permission", 
+  "fields": {
+    "codename": "change_permission", 
+    "name": "Can change permission", 
+    "content_type": 2
+  }
+},
+{
+  "pk": 6, 
+  "model": "auth.permission", 
+  "fields": {
+    "codename": "delete_permission", 
+    "name": "Can delete permission", 
+    "content_type": 2
+  }
+},
+{
+  "pk": 7, 
+  "model": "auth.permission", 
+  "fields": {
+    "codename": "add_group", 
+    "name": "Can add group", 
+    "content_type": 3
+  }
+},
+{
+  "pk": 8, 
+  "model": "auth.permission", 
+  "fields": {
+    "codename": "change_group", 
+    "name": "Can change group", 
+    "content_type": 3
+  }
+},
+{
+  "pk": 9, 
+  "model": "auth.permission", 
+  "fields": {
+    "codename": "delete_group", 
+    "name": "Can delete group", 
+    "content_type": 3
+  }
+},
+{
+  "pk": 10, 
+  "model": "auth.permission", 
+  "fields": {
+    "codename": "add_user", 
+    "name": "Can add user", 
+    "content_type": 4
+  }
+},
+{
+  "pk": 11, 
+  "model": "auth.permission", 
+  "fields": {
+    "codename": "change_user", 
+    "name": "Can change user", 
+    "content_type": 4
+  }
+},
+{
+  "pk": 12, 
+  "model": "auth.permission", 
+  "fields": {
+    "codename": "delete_user", 
+    "name": "Can delete user", 
+    "content_type": 4
+  }
+},
+{
+  "pk": 13, 
+  "model": "auth.permission", 
+  "fields": {
+    "codename": "add_contenttype", 
+    "name": "Can add content type", 
+    "content_type": 5
+  }
+},
+{
+  "pk": 14, 
+  "model": "auth.permission", 
+  "fields": {
+    "codename": "change_contenttype", 
+    "name": "Can change content type", 
+    "content_type": 5
+  }
+},
+{
+  "pk": 15, 
+  "model": "auth.permission", 
+  "fields": {
+    "codename": "delete_contenttype", 
+    "name": "Can delete content type", 
+    "content_type": 5
+  }
+},
+{
+  "pk": 16, 
+  "model": "auth.permission", 
+  "fields": {
+    "codename": "add_session", 
+    "name": "Can add session", 
+    "content_type": 6
+  }
+},
+{
+  "pk": 17, 
+  "model": "auth.permission", 
+  "fields": {
+    "codename": "change_session", 
+    "name": "Can change session", 
+    "content_type": 6
+  }
+},
+{
+  "pk": 18, 
+  "model": "auth.permission", 
+  "fields": {
+    "codename": "delete_session", 
+    "name": "Can delete session", 
+    "content_type": 6
+  }
+},
+{
+  "pk": 19, 
+  "model": "auth.permission", 
+  "fields": {
+    "codename": "add_migrationhistory", 
+    "name": "Can add migration history", 
+    "content_type": 7
+  }
+},
+{
+  "pk": 20, 
+  "model": "auth.permission", 
+  "fields": {
+    "codename": "change_migrationhistory", 
+    "name": "Can change migration history", 
+    "content_type": 7
+  }
+},
+{
+  "pk": 21, 
+  "model": "auth.permission", 
+  "fields": {
+    "codename": "delete_migrationhistory", 
+    "name": "Can delete migration history", 
+    "content_type": 7
+  }
+},
+{
+  "pk": 22, 
+  "model": "auth.permission", 
+  "fields": {
+    "codename": "add_person", 
+    "name": "Can add person", 
+    "content_type": 8
+  }
+},
+{
+  "pk": 23, 
+  "model": "auth.permission", 
+  "fields": {
+    "codename": "change_person", 
+    "name": "Can change person", 
+    "content_type": 8
+  }
+},
+{
+  "pk": 24, 
+  "model": "auth.permission", 
+  "fields": {
+    "codename": "delete_person", 
+    "name": "Can delete person", 
+    "content_type": 8
+  }
+},
+{
+  "pk": 1, 
+  "model": "auth.user", 
+  "fields": {
+    "username": "admin", 
+    "first_name": "", 
+    "last_name": "", 
+    "is_active": true, 
+    "is_superuser": true, 
+    "is_staff": true, 
+    "last_login": "2014-12-08T20:18:41.813Z", 
+    "groups": [], 
+    "user_permissions": [], 
+    "password": "pbkdf2_sha256$12000$aQHsgyoaaIvX$XT6Sepssi//VWlWwOJ0aiKTwIjHeWO7LmbItQ4hA1fk=", 
+    "email": "dzh21@tut.by", 
+    "date_joined": "2014-12-08T20:13:57.509Z"
+  }
+},
+{
+  "pk": "egpsfjavnj5p6nij28fu58i0v5wujemh", 
+  "model": "sessions.session", 
+  "fields": {
+    "expire_date": "2014-12-22T20:16:52.822Z", 
+    "session_data": "YzQ2ZDJmNmU1YzBiNmY2ZDlhNTI1NzhjOGFlNjI5Y2ZmMTE0MjQyMjp7fQ=="
+  }
+},
+{
+  "pk": "f9t4rv10q0k2zo3qpm0kqg58jxxqsi5w", 
+  "model": "sessions.session", 
+  "fields": {
+    "expire_date": "2014-12-22T20:20:32.278Z", 
+    "session_data": "YzQ2ZDJmNmU1YzBiNmY2ZDlhNTI1NzhjOGFlNjI5Y2ZmMTE0MjQyMjp7fQ=="
+  }
+},
+{
+  "pk": 1, 
+  "model": "south.migrationhistory", 
+  "fields": {
+    "applied": "2014-12-08T20:14:44.602Z", 
+    "app_name": "tasks42", 
+    "migration": "0001_initial"
+  }
+},
+{
+  "pk": 1, 
+  "model": "tasks42.person", 
+  "fields": {
+    "bio": "I was born in Lubetch Chernigov region Ukraine. In 1995 moved to Belarus. In 2001-2006 studied in The Belarusian State University of Informatics and Radioelectronics.", 
+    "surname": "Davliud", 
+    "name": "Evhen", 
+    "other_contacts": "phone +375297602862", 
+    "date_of_birth": "1983-07-21", 
+    "skype": "dzha21", 
+    "jabber": "dzh@default.rs", 
+    "email": "dzh21@tut.by"
+  }
+},
+{
+  "pk": 1, 
+  "model": "admin.logentry", 
+  "fields": {
+    "action_flag": 1, 
+    "action_time": "2014-12-08T20:20:25.766Z", 
+    "object_repr": "Evhen Davliud", 
+    "object_id": "1", 
+    "change_message": "", 
+    "user": 1, 
+    "content_type": 8
+  }
+}
+]

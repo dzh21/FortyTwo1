@@ -10,8 +10,8 @@
           <h4>{{ persons.0.name }}</h4>
           <h4>{{ persons.0.surname }}</h4>
           <h4>{{ persons.0.date_of_birth }}</h4>
-          <h4>Photo:</h4>
-          <img src="{{ MEDIA_URL }}{{ persons.0.photo }}" />
+          <h4>Bio:</h4>
+          <p>{{ persons.0.bio }}</p>
         </div>
 
         <div class="col-lg-6">
@@ -21,8 +21,7 @@
           <h4>Skype: {{ persons.0.skype }}</h4>
           <h4>Other contacts:</h4>
           <p>{{ persons.0.other_contacts }}</p>
-          <h4>Bio:</h4>
-          <p>{{ persons.0.bio }}</p>
+
         </div>
       </div>
 {% endblock %}
