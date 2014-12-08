@@ -21,3 +21,7 @@ class MainViewTest(TestCase):
 
     def test_context_for_one_person(self):
         self.assertEquals(len(self.response.context['persons']), 1)
+
+    def test_for_invalid_data(self):
+        self.assertEquals('Vasya' in self.response.content, False)
+        self.assertEquals('vasya@gmail.com' in self.response.content, False)
