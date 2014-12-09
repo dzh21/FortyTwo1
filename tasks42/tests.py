@@ -25,3 +25,9 @@ class MainViewTest(TestCase):
     def test_for_invalid_data(self):
         self.assertEquals('Vasya' in self.response.content, False)
         self.assertEquals('vasya@gmail.com' in self.response.content, False)
+
+    def test_for_request_link(self):
+        self.assertIn('requests', self.response.content)
+
+    def test_for_following_request_link(self):
+        self.assertEquals(self.client.get('/requests/').status_code, 200)
