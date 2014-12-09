@@ -13,3 +13,12 @@ class Person(models.Model):
 
     def __unicode__(self):
         return self.name + ' ' + self.surname
+
+
+class RequestObject(models.Model):
+    desc = models.TextField()
+    remote_address = models.CharField(max_length=20, default='localhost')
+    event_date_time = models.DateTimeField()
+
+    def __unicode__(self):
+        return "Request #" + str(self.id)

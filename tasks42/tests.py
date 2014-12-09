@@ -31,3 +31,15 @@ class MainViewTest(TestCase):
 
     def test_for_following_request_link(self):
         self.assertEquals(self.client.get('/requests/').status_code, 200)
+
+
+class RequestsViewTest(TestCase):
+
+    def setUp(self):
+        self.response = self.client.get('/requests/')
+
+    def test_template_usage(self):
+        self.assertTemplateUsed(self.response, 'requests.html')
+
+    def test_request_records_showing(self):
+        self.assertIn('Request #', self.response.content)
