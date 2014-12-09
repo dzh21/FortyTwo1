@@ -7,4 +7,8 @@ def index(request):
 
 
 def requests(request):
-    return render(request, "requests.html", {'requests': RequestObject.objects.all()})
+    return render(
+        request,
+        "requests.html",
+        {'requests': list(RequestObject.objects.order_by('event_date_time'))[:10]}
+    )

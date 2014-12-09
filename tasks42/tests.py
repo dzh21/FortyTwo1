@@ -1,4 +1,6 @@
 from django.test import TestCase
+from tasks42.models import RequestObject
+from django.utils import timezone
 
 
 class MainViewTest(TestCase):
@@ -36,10 +38,34 @@ class MainViewTest(TestCase):
 class RequestsViewTest(TestCase):
 
     def setUp(self):
-        self.response = self.client.get('/requests/')
+        for i in xrange(12):
+            self.response = self.client.get('/requests/')
 
     def test_template_usage(self):
         self.assertTemplateUsed(self.response, 'requests.html')
 
     def test_request_records_showing(self):
         self.assertIn('Request #', self.response.content)
+
+    def test_first_ten_requests_showing(self):
+        requests_in_db = list(RequestObject.objects.order_by(
+            'event_date_time'
+        ))[:10]
+
+        self.assertEquals(len(self.response.context['requests']), 10)
+
+        self.assertIn(
+            timezone.localtime(
+                requests_in_db[0].event_date_time
+            ).strftime('%Y-%m-%d %H:%M:%S'),
+            self.response.content
+        )
+        self.assertIn(
+            timezone.localtime(
+                requests_in_db[9].event_date_time
+            ).strftime('%Y-%m-%d %H:%M:%S'),
+            self.response.content
+        )
+
+
+
