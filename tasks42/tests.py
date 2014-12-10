@@ -55,12 +55,15 @@ class RequestsViewTest(TestCase):
             self.response = self.client.get('/requests/')
 
     def test_template_usage(self):
+        """ test template usage """
         self.assertTemplateUsed(self.response, 'requests.html')
 
     def test_request_records_showing(self):
+        """ test requests showing """
         self.assertIn('Request #', self.response.content)
 
     def test_first_ten_requests_showing(self):
+        """ test only 10 first request showing """
         requests_in_db = list(RequestObject.objects.order_by(
             'event_date_time'
         ))[:10]
