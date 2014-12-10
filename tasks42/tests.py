@@ -42,8 +42,10 @@ class MainViewTest(TestCase):
         )
         new_person.save()
 
-        self.assertEquals("Frodo" in self.response.content, False)
-        self.assertIn("Evhen", self.response.content)
+        response = self.client.get('/')
+
+        self.assertEquals("Frodo" in response.content, False)
+        self.assertIn("Evhen", response.content)
 
 
 class RequestsViewTest(TestCase):
