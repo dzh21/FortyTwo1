@@ -1,6 +1,7 @@
 from django.test import TestCase
 from tasks42.models import Person, RequestObject
 from django.utils import timezone
+from django.conf import settings
 
 
 class MainViewTest(TestCase):
@@ -46,6 +47,11 @@ class MainViewTest(TestCase):
 
         self.assertEquals("Frodo" in response.content, False)
         self.assertIn("Evhen", response.content)
+
+    def test_settings_in_context(self):
+        """ test existing of project setting in page context """
+        setting_in_context = self.response.context['settings']
+        self.assertEquals(setting_in_context, settings)
 
 
 class RequestsViewTest(TestCase):
