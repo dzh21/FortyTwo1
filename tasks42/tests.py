@@ -53,6 +53,10 @@ class MainViewTest(TestCase):
         setting_in_context = self.response.context['settings']
         self.assertEquals(setting_in_context, settings)
 
+    def test_editcontacts_link(self):
+        """ test edit contacts link existing on main page """
+        self.assertIn('/editcontacts/', self.response.content)
+
 
 class RequestsViewTest(TestCase):
 

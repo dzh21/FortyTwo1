@@ -12,3 +12,7 @@ def requests(request):
         "requests.html",
         {'requests': list(RequestObject.objects.order_by('event_date_time'))[:10]}
     )
+
+
+def edit_contacts(request):
+    return render(request, "edit_contacts.html", {})
