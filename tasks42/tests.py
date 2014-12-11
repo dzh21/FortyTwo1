@@ -131,3 +131,4 @@ class EditContactsViewTest(TestCase):
             follow=True
         )
         self.assertEquals(response.status_code, 200)
+        self.assertIn(person.email, response.content)
