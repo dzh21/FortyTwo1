@@ -27,8 +27,16 @@ class Migration(DataMigration):
             'jabber': ('django.db.models.fields.EmailField', [], {'max_length': '75'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
             'other_contacts': ('django.db.models.fields.TextField', [], {}),
+            'photo': ('django.db.models.fields.files.FileField', [], {'max_length': '100', 'blank': 'True'}),
             'skype': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
             'surname': ('django.db.models.fields.CharField', [], {'max_length': '50'})
+        },
+        u'tasks42.requestobject': {
+            'Meta': {'object_name': 'RequestObject'},
+            'desc': ('django.db.models.fields.TextField', [], {}),
+            'event_date_time': ('django.db.models.fields.DateTimeField', [], {}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'remote_address': ('django.db.models.fields.CharField', [], {'default': "'localhost'", 'max_length': '20'})
         }
     }
 

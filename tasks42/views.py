@@ -21,7 +21,6 @@ def edit_contacts(request):
 
     if request.method == "POST":
         form = PersonForm(request.POST, instance=person)
-        print(form.is_valid())
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/')

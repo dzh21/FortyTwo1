@@ -26,6 +26,7 @@ class MainViewTest(TestCase):
         self.assertIn('Evhen', self.response.content)
         self.assertIn('Davliud', self.response.content)
         self.assertIn('dzh21@tut.by', self.response.content)
+        self.assertIn('<img src=', self.response.content)
 
     def test_context_for_one_person(self):
         """ test only one person showing """
