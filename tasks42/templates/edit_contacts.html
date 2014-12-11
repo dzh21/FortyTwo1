@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block content %}
+
+        <form action="/edit_contacts/" method="POST" enctype="multipart/form-data" class="form-horizontal" role="form" >
+          {% csrf_token %}
+
+          <div class="form-group">
+            <label for="{{ edit_person_form.name.id_for_label }}" class="col-sm-2 control-label">{{ edit_person_form.name.label }}</label>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" id="{{ edit_person_form.name.id_for_label }}" name="{{ edit_person_form.name.html_name }}" value="{{ edit_person_form.name.value }}">
+            </div>
+            <label for="{{ edit_person_form.email.id_for_label }}" class="col-sm-2 control-label">{{ edit_person_form.email.label }}</label>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" id="{{ edit_person_form.email.id_for_label }}" name="{{ edit_person_form.email.html_name }}" value="{{ edit_person_form.email.value }}">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="{{ edit_person_form.surname.id_for_label }}" class="col-sm-2 control-label">{{ edit_person_form.surname.label }}</label>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" id="{{ edit_person_form.surname.id_for_label }}" name="{{ edit_person_form.surname.html_name }}" value="{{ edit_person_form.surname.value }}">
+            </div>
+            <label for="{{ edit_person_form.jabber.id_for_label }}" class="col-sm-2 control-label">{{ edit_person_form.jabber.label }}</label>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" id="{{ edit_person_form.jabber.id_for_label }}" name="{{ edit_person_form.jabber.html_name }}" value="{{ edit_person_form.jabber.value }}">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="{{ edit_person_form.date_of_birth.id_for_label }}" class="col-sm-2 control-label">{{ edit_person_form.date_of_birth.label }}</label>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" id="{{ edit_person_form.date_of_birth.id_for_label }}" name="{{ edit_person_form.date_of_birth.html_name }}" value="{{ edit_person_form.date_of_birth.value|date:'Y-m-d' }}">
+            </div>
+            <label for="{{ edit_person_form.skype.id_for_label }}" class="col-sm-2 control-label">{{ edit_person_form.skype.label }}</label>
+            <div class="col-sm-2">
+              <input type="text" class="form-control" id="{{ edit_person_form.skype.id_for_label }}" name="{{ edit_person_form.skype.html_name }}" value="{{ edit_person_form.skype.value }}">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="{{ edit_person_form.photo.id_for_label }}" class="col-sm-2 control-label">{{ edit_person_form.photo.label }}</label>
+            <div class="col-sm-3">
+              <input type="file" class="form-control" id="{{ edit_person_form.photo.id_for_label }}" name="{{ edit_person_form.photo.html_name }}" value="{{ edit_person_form.photo.value }}">
+              <img src="{{ settings.MEDIA_URL }}{{ edit_person_form.photo.value }}" />
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="{{ edit_person_form.other_contacts.id_for_label }}" class="col-sm-2 control-label">{{ edit_person_form.other_contacts.label }}</label>
+                    <div class="col-sm-6">
+                      <textarea class="form-control" id="{{ edit_person_form.other_contacts.id_for_label }}" name="{{ edit_person_form.other_contacts.html_name }}" rows="10">{{ edit_person_form.other_contacts.value }}</textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="{{ edit_person_form.bio.id_for_label }}" class="col-sm-2 control-label">{{ edit_person_form.bio.label }}</label>
+                    <div class="col-sm-6">
+                      <textarea class="form-control" id="{{ edit_person_form.bio.id_for_label }}" name="{{ edit_person_form.bio.html_name }}" rows="10">{{ edit_person_form.bio.value }}</textarea>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-7 col-sm-offset-2">
+                <input type="submit" value="Save" class="btn btn-default">
+                <a href="{% url 'django.contrib.auth.views.logout' %}">Cancel</a>
+            </div>
+          </div>
+        </form>
+
+      <div class="row">
+        <div class="col-lg-12">
+          <hr>
+          <a href={% url 'tasks42.views.requests' %}>requests</a>
+        </div>
+      </div>
+{% endblock %}

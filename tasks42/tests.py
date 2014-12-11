@@ -2,6 +2,8 @@ from django.test import TestCase
 from tasks42.models import Person, RequestObject
 from django.utils import timezone
 from django.conf import settings
+from tasks42.forms import PersonForm
+from django.forms import model_to_dict
 
 
 class MainViewTest(TestCase):
@@ -24,6 +26,7 @@ class MainViewTest(TestCase):
         self.assertIn('Evhen', self.response.content)
         self.assertIn('Davliud', self.response.content)
         self.assertIn('dzh21@tut.by', self.response.content)
+        self.assertIn('<img src=', self.response.content)
 
     def test_context_for_one_person(self):
         """ test only one person showing """
@@ -52,6 +55,10 @@ class MainViewTest(TestCase):
         """ test existing of project setting in page context """
         setting_in_context = self.response.context['settings']
         self.assertEquals(setting_in_context, settings)
+
+    def test_edit_contacts_link(self):
+        """ test edit contacts link existing on main page """
+        self.assertIn('/edit_contacts/', self.response.content)
 
 
 class RequestsViewTest(TestCase):
@@ -88,3 +95,55 @@ class RequestsViewTest(TestCase):
             ).strftime('%Y-%m-%d %H:%M:%S'),
             self.response.content
         )
+
+
+class EditContactsViewTest(TestCase):
+
+    def setUp(self):
+        self._login()
+        self.assertEquals(self.response.context['user'].is_active, True)
+        self.response = self.client.get('/edit_contacts/')
+
+    def _login(self):
+        """ login to edit data """
+        logindata = {
+            'username': 'admin',
+            'password': 'admin'
+        }
+        self.response = self.client.post(
+            '/accounts/login/',
+            logindata,
+            follow=True
+        )
+
+    def test_existing_page(self):
+        """ test for edit contacts page existing """
+        self.assertEquals(self.response.status_code, 200)
+
+    def test_for_template_usage(self):
+        """ test for template usage """
+        self.assertTemplateUsed(self.response, "edit_contacts.html")
+
+    def test_form_with_contacts_on_page(self):
+        """ test my contact in form fields """
+        self.assertIn('form', self.response.content)
+        self.assertIn('value="Save"', self.response.content)
+
+        self.assertIn('value="Evhen"', self.response.content)
+        self.assertIn('value="dzh21@tut.by"', self.response.content)
+        self.assertIn('value="dzh@default.rs"', self.response.content)
+
+    def test_form_for_saving_data(self):
+        person = Person.objects.get(pk=1)
+        person.email = 'newemail@gmail.com'
+
+        form = PersonForm(model_to_dict(person), instance=person)
+        self.assertEquals(form.is_valid(), True)
+
+        response = self.client.post(
+            '/edit_contacts/',
+            form.cleaned_data,
+            follow=True
+        )
+        self.assertEquals(response.status_code, 200)
+        self.assertIn(person.email, response.content)
