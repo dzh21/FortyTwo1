@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 from tasks42.models import Person, RequestObject
 from tasks42.forms import PersonForm
 
@@ -16,6 +17,7 @@ def requests(request):
     )
 
 
+@login_required
 def edit_contacts(request):
     person = Person.objects.get(pk=1)
 

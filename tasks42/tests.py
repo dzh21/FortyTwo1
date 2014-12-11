@@ -100,7 +100,21 @@ class RequestsViewTest(TestCase):
 class EditContactsViewTest(TestCase):
 
     def setUp(self):
+        self._login()
+        self.assertEquals(self.response.context['user'].is_active, True)
         self.response = self.client.get('/edit_contacts/')
+
+    def _login(self):
+        """ login to edit data """
+        logindata = {
+            'username': 'admin',
+            'password': 'admin'
+        }
+        self.response = self.client.post(
+            '/accounts/login/',
+            logindata,
+            follow=True
+        )
 
     def test_existing_page(self):
         """ test for edit contacts page existing """

@@ -13,7 +13,13 @@ urlpatterns = patterns('',
     url(r'^requests/', 'tasks42.views.requests'),
     url(r'^edit_contacts/', 'tasks42.views.edit_contacts'),
     url(r'^admin/', include(admin.site.urls)),
-    (r'^media/(?P<path>.*)$', 'django.views.static.serve', {
+    url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
         'document_root': settings.MEDIA_ROOT
+    }),
+    url(r'^accounts/login/$', 'django.contrib.auth.views.login', {
+        'template_name': 'login.html',
+    }),
+    url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {
+        'next_page': 'tasks42.views.index'
     }),
 )
