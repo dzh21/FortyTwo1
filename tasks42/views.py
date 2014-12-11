@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from tasks42.models import Person, RequestObject
+from tasks42.forms import PersonForm
 
 
 def index(request):
@@ -15,4 +16,6 @@ def requests(request):
 
 
 def edit_contacts(request):
-    return render(request, "edit_contacts.html", {})
+    person = Person.objects.get(pk=1)
+    form = PersonForm(instance=person)
+    return render(request, "edit_contacts.html", {'edit_person_form': form})
