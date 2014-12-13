@@ -147,3 +147,8 @@ class EditContactsViewTest(TestCase):
         )
         self.assertEquals(response.status_code, 200)
         self.assertIn(person.email, response.content)
+
+    def test_datepicker_class_of_input(self):
+        """ test for datepicker class of input element """
+        self.assertIn('class="datepicker"', self.response.content)
+

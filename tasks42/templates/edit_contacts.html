@@ -25,9 +25,10 @@
             </div>
           </div>
           <div class="form-group">
+              {{ edit_person_form.date_of_birth }}
             <label for="{{ edit_person_form.date_of_birth.id_for_label }}" class="col-sm-2 control-label">{{ edit_person_form.date_of_birth.label }}</label>
             <div class="col-sm-2">
-              <input type="text" class="form-control" id="{{ edit_person_form.date_of_birth.id_for_label }}" name="{{ edit_person_form.date_of_birth.html_name }}" value="{{ edit_person_form.date_of_birth.value|date:'Y-m-d' }}">
+              <input type="text" class="form-control {{ edit_person_form.date_of_birth.class }}" id="{{ edit_person_form.date_of_birth.id_for_label }}" name="{{ edit_person_form.date_of_birth.html_name }}" value="{{ edit_person_form.date_of_birth.value|date:'Y-m-d' }}">
             </div>
             <label for="{{ edit_person_form.skype.id_for_label }}" class="col-sm-2 control-label">{{ edit_person_form.skype.label }}</label>
             <div class="col-sm-2">
@@ -69,4 +70,12 @@
           <a href={% url 'tasks42.views.requests' %}>requests</a>
         </div>
       </div>
+
+    <script>
+        $(document).ready(function() {
+            $(".datepicker").datepicker({
+                dateFormat: 'yy-mm-dd'
+            });
+        });
+    </script>
 {% endblock %}
