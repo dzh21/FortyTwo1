@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.forms import ModelForm
 from tasks42.models import Person
-from django.forms.extras.widgets import SelectDateWidget
+from tasks42.widgets import DatePickerInput
 
 
 class PersonForm(ModelForm):
@@ -10,9 +10,6 @@ class PersonForm(ModelForm):
         labels = {
             'surname': 'Last name'
         }
-
-    def __init__(self, *args, **kwargs):
-        super(PersonForm, self).__init__(*args, **kwargs)
-        self.fields['date_of_birth'].widget.attrs.update({
-            'class': 'datepicker'
-        })
+        widgets = {
+            'date_of_birth': DatePickerInput(attrs={'class': 'form-control'})
+        }
