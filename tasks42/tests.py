@@ -142,8 +142,19 @@ class EditContactsViewTest(TestCase):
 
         response = self.client.post(
             '/edit_contacts/',
-            form.cleaned_data,
-            follow=True
+            data=form.cleaned_data
         )
+
         self.assertEquals(response.status_code, 200)
+        # self.assertIn(person.email, response.content)
+        self.assertIn('Changes have been saved', response.content)
+        response = self.client.get('/')
         self.assertIn(person.email, response.content)
+
+    def test_datepicker_class_of_input(self):
+        """ test for datepicker class of input element """
+        self.assertIn('class="datepicker', self.response.content)
+
+    def test_progress_bar_exist(self):
+        """ test progress bar exist """
+        self.assertIn('class="progress-bar"', self.response.content)

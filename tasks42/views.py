@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from tasks42.models import Person, RequestObject
 from tasks42.forms import PersonForm
@@ -27,7 +27,7 @@ def edit_contacts(request):
             saved_person = form.save()
             if saved_person.photo:
                 resize_photo(saved_person.photo)
-            return HttpResponseRedirect('/')
+            return HttpResponse('Changes have been saved')
     else:
         form = PersonForm(instance=person)
 
