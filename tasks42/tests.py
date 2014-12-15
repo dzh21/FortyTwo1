@@ -155,3 +155,6 @@ class EditContactsViewTest(TestCase):
         """ test for datepicker class of input element """
         self.assertIn('class="datepicker', self.response.content)
 
+    def test_progress_bar_exist(self):
+        """ test progress bar exist """
+        self.assertIn('class="progress-bar"', self.response.content)
