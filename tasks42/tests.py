@@ -60,6 +60,9 @@ class MainViewTest(TestCase):
         """ test edit contacts link existing on main page """
         self.assertIn('/edit_contacts/', self.response.content)
 
+    def test_edit_link_exist(self):
+        self.assertIn('>Edit</a>', self.response.content)
+
 
 class RequestsViewTest(TestCase):
 
