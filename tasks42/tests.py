@@ -4,6 +4,8 @@ from django.utils import timezone
 from django.conf import settings
 from tasks42.forms import PersonForm
 from django.forms import model_to_dict
+from django.core.management import call_command
+from django.utils.six import StringIO
 
 
 class MainViewTest(TestCase):
@@ -161,3 +163,32 @@ class EditContactsViewTest(TestCase):
     def test_progress_bar_exist(self):
         """ test progress bar exist """
         self.assertIn('class="progress-bar"', self.response.content)
+
+
+class CommandsTest(TestCase):
+
+    def setUp(self):
+        self.out = StringIO()
+        self.err = StringIO()
+        call_command('printmodels', stdout=self.out, stderr=self.err)
+
+    def test_print_models_showing(self):
+        """ test printmodels django command for models"""
+        self.assertIn('tasks42.models.Person', self.out.getvalue())
+        self.assertIn('error: tasks42.models.Person', self.err.getvalue())
+
+    def _command_output_to_dict(self, output):
+        """ convert command output to dict """
+        models_dict = {}
+        for i in (output.strip()).split("\n"):
+            item = i.split("\t")
+            models_dict[item[0]] = int(item[1])
+        return models_dict
+
+    def test_print_models_object_count(self):
+        """ test printmodels django command for object counts"""
+        models_out_dict = self._command_output_to_dict(self.out.getvalue())
+        self.assertEquals(models_out_dict['tasks42.models.Person'], 1)
+
+        models_err_dict = self._command_output_to_dict(self.err.getvalue())
+        self.assertEquals(models_err_dict['error: tasks42.models.Person'], 1)
