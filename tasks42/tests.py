@@ -140,20 +140,18 @@ class EditContactsViewTest(TestCase):
         form = PersonForm(model_to_dict(person), instance=person)
         self.assertEquals(form.is_valid(), True)
 
-        import json
         response = self.client.post(
             '/edit_contacts/',
-            content_type='application/json',
-            data=json.dumps(form.cleaned_data)
+            data=form.cleaned_data
         )
+
         self.assertEquals(response.status_code, 200)
+        # self.assertIn(person.email, response.content)
+        self.assertIn('Changes have been saved', response.content)
+        response = self.client.get('/')
         self.assertIn(person.email, response.content)
 
     def test_datepicker_class_of_input(self):
         """ test for datepicker class of input element """
         self.assertIn('class="datepicker', self.response.content)
 
-    def test_msg_after_ajax_submit(self):
-        """ test ajax msg response """
-        self.test_form_for_saving_data()
-        self.assertIn('Changes have been saved', self.response.content)
