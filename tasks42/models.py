@@ -23,3 +23,10 @@ class RequestObject(models.Model):
 
     def __unicode__(self):
         return "Request #" + str(self.id)
+
+
+class OperationOnModels(models.Model):
+    date_time = models.DateTimeField()
+    operation = models.CharField(max_length=20)
+    model_name = models.CharField(max_length=20)
+

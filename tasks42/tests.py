@@ -1,5 +1,5 @@
 from django.test import TestCase
-from tasks42.models import Person, RequestObject
+from tasks42.models import Person, RequestObject, OperationOnModels
 from django.utils import timezone
 from django.conf import settings
 from tasks42.forms import PersonForm
@@ -192,3 +192,15 @@ class CommandsTest(TestCase):
 
         models_err_dict = self._command_output_to_dict(self.err.getvalue())
         self.assertEquals(models_err_dict['error: tasks42.models.Person'], 1)
+
+
+class SignalsTest(TestCase):
+    def test_create_signal_db_entry(self):
+        person = Person()
+        person.name = "Vasya"
+        person.date_of_birth = timezone.now()
+        person.save()
+
+        create_signal = list(OperationOnModels.objects.order_by('date_time'))[0]
+        self.assertEquals(create_signal.model_name, 'Person')
+        self.assertEquals(create_signal.operation, 'create')
