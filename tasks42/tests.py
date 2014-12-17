@@ -201,6 +201,7 @@ class SignalsTest(TestCase):
         person.date_of_birth = timezone.now()
         person.save()
 
-        create_signal = list(OperationOnModels.objects.order_by('date_time'))[0]
-        self.assertEquals(create_signal.model_name, 'Person')
-        self.assertEquals(create_signal.operation, 'create')
+        create_signal_list = list(OperationOnModels.objects.order_by('date_time'))
+        self.assertEquals(len(create_signal_list) > 0, True)
+        self.assertEquals(create_signal_list[0].model_name, 'Person')
+        self.assertEquals(create_signal_list[0].operation, 'create')

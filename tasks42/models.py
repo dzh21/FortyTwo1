@@ -1,5 +1,6 @@
 from django.db import models
-
+from django.utils import timezone
+from django.db.models.signals import post_save
 
 class Person(models.Model):
     name = models.CharField(max_length=50)
@@ -26,7 +27,16 @@ class RequestObject(models.Model):
 
 
 class OperationOnModels(models.Model):
-    date_time = models.DateTimeField()
+    date_time = models.DateTimeField(default=timezone.now())
     operation = models.CharField(max_length=20)
     model_name = models.CharField(max_length=20)
 
+
+def signal_save_update_callback(sender, **kwargs):
+    if sender.__name__ != 'OperationOnModels':
+        op = OperationOnModels()
+        op.operation = kwargs['created'] and 'create' or 'edit'
+        op.model_name = sender.__name__
+        op.save()
+
+post_save.connect(signal_save_update_callback)
