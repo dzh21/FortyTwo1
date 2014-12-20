@@ -134,6 +134,7 @@ class EditContactsViewTest(TestCase):
         self.assertIn('value="dzh@default.rs"', self.response.content)
 
     def test_form_for_saving_data(self):
+        """ test saving form data """
         person = Person.objects.get(pk=1)
         person.email = 'newemail@gmail.com'
 
